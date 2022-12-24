@@ -23,7 +23,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $sno = $_POST['snoEdit'];
         $title = $_POST['note-title-edit'];
         $content = $_POST['note-content-edit'];
-        $add = "UPDATE `notes` SET `title`='$title' , `content`='$content' WHERE `notes`.`sno`=$sno ;";
+        $add = "UPDATE `notes` SET `title`='$title' , `content`='$content', `date`=current_timestamp() WHERE `notes`.`sno`=$sno ;";
         $adder = mysqli_query($con, $add);
         if($adder){
             $update = true;
@@ -133,6 +133,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         <th scope="col">Sl. No.</th>
                         <th scope="col">Title</th>
                         <th scope="col">Content</th>
+                        <th scope="col">Date Modified</th>
                         <th scope="col">Actions</th>
                     </tr>
                 </thead>
@@ -148,6 +149,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                             <td scope='row'>" . $count . "</td>
                             <td scope='row'>" . $row['title'] . "</td>
                             <td scope='row'>" . $row['content'] . "</td>
+                            <td scope='row'>" . $row['date'] . "</td>
                             <td scope='row' class='actions'><button id=" . $row['sno'] . " class='edit myBtn'>Edit</button><button class='delete' id=" . $row['sno'] . ">Delete</button></td>
                         </tr>";
                         $count++;
