@@ -1,10 +1,10 @@
 <?php
 include 'connection.php';
 session_start();
-// if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] != true) {
-//     header('location: index.php');
-//     exit;
-// }
+if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] != true) {
+    header('location: index.php');
+    exit;
+}
 
 $insert = false;
 $update = false;
@@ -132,8 +132,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     <tr>
                         <th scope="col">Sl. No.</th>
                         <th scope="col">Title</th>
-                        <th scope="col">Content</th>
-                        <th scope="col">Date Modified</th>
+                        <th class='display-content' scope="col">Content</th>
+                        <th class='display-date' scope="col">Date Modified</th>
                         <th scope="col">Actions</th>
                     </tr>
                 </thead>
@@ -148,8 +148,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         <tr>
                             <td scope='row'>" . $count . "</td>
                             <td scope='row'>" . $row['title'] . "</td>
-                            <td scope='row'>" . $row['content'] . "</td>
-                            <td scope='row'>" . $row['date'] . "</td>
+                            <td class='display-content' scope='row'>" . $row['content'] . "</td>
+                            <td class='display-date' scope='row'>" . $row['date'] . "</td>
                             <td scope='row' class='actions'><button id=" . $row['sno'] . " class='edit myBtn'>Edit</button><button class='delete' id=" . $row['sno'] . ">Delete</button></td>
                         </tr>";
                         $count++;
